@@ -22,7 +22,7 @@ You should install this package if you want to trust the identity
 assertions issued by the CMS-TTS-CA.
 
 %prep
-%setup -c 
+%setup -q
 
 %build
 # Nothing to build

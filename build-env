@@ -1,0 +1,8 @@
+BUILD_NAME=ca_CMS-TTS-CA
+BUILD_REPO=https://github.com/cnaf-mw-devel/ca_CMS-TTS-CA.git
+BUILD_TAG=master
+PKG_REPO=https://github.com/cnaf-mw-devel/ca_CMS-TTS-CA.git
+PKG_TAG=master
+PKG_SPEC_FILE=ca_CMS-TTS-CA/ca_CMS-TTS-CA.spec
+TARBALL_VERSION=0.1.0
+PKG_STAGE_RPMS=1
