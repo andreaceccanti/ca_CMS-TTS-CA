@@ -1,5 +1,0 @@
-TO Issuer "/C=EU/O=INDIGO/OU=TTS/CN=TTS-CA" \
-    PERMIT Subject "/C=eu/O=INDIGO/OU=TTS/.*"
-
-TO Issuer "/C=EU/O=INDIGO/OU=TTS/CN=TTS-CA" \
-    PERMIT Subject "/C=EU/O=INDIGO/OU=TTS/.*"
