@@ -1,0 +1,3 @@
+alias=CMS-TTS-CA
+url=https://github.com/italiangrid/tts-ca
+subjectdn="/C=EU/O=INDIGO/OU=TTS/CN=TTS-CA"
