@@ -2,7 +2,7 @@
 set -ex
 
 BUILD_TAG=${BUILD_TAG:-test}
-REGISTRY_HOST=${REGISTRY_HOST:-cloud-vm128.cloud.cnaf.infn.it}
+REGISTRY_HOST=${REGISTRY_HOST:-cloud-vm114.cloud.cnaf.infn.it}
 PKG_IMAGE=${PKG_IMAGE:-italiangrid/pkg.base}
 PLATFORM=${PLATFORM:-centos6}
 
