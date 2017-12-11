@@ -12,6 +12,10 @@ pipeline {
     cron('@daily')
   }
   
+  environment {
+    REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"
+  }
+  
   stages {
     stage('build'){
       steps {
