@@ -13,21 +13,22 @@ pipeline {
   }
   
   stages {
-    stage('prepare'){
+    stage('build'){
       steps {
-        deleteDir()
-        checkout scm
+        container('docker-runner'){
+          sh 'sh ./jenkins-build.sh'
+          sh 'ls -al'
+          archiveArtifacts 'repo/**'
+          archiveArtifacts 'ca_CMS-TTS-CA.repo'
+        }
       }
     }
     
-    stage('build'){
+    stage('result'){
       steps {
-        sh 'sh ./jenkins-build.sh'
-        sh 'ls -al'
-        archiveArtifacts 'repo/**'
-        archiveArtifacts 'ca_CMS-TTS-CA.repo'
-        
-        script { currentBuild.result = 'SUCCESS' }
+        script {
+          currentBuild.result = 'SUCCESS'
+        }
       }
     }
   }
