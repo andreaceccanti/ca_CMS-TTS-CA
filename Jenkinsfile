@@ -22,11 +22,12 @@ pipeline {
     
     stage('build'){
       steps {
-        sh 'sh ./jenkins-build.sh'
-        sh 'ls -al'
-        archiveArtifacts 'repo/**'
-        archiveArtifacts 'ca_CMS-TTS-CA.repo'
-        
+        container('docker-runner') {
+          sh 'sh ./jenkins-build.sh'
+          sh 'ls -al'
+          archiveArtifacts 'repo/**'
+          archiveArtifacts 'ca_CMS-TTS-CA.repo'
+        }
         script { currentBuild.result = 'SUCCESS' }
       }
     }
