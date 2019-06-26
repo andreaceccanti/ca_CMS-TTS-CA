@@ -1,8 +1,19 @@
 #!/usr/bin/env groovy
 
+@Library('sd')_
+def kubeLabel = getKubeLabel()
+
 pipeline {
-  agent { label 'docker' }
-  
+
+  agent {
+    kubernetes {
+      label "${kubeLabel}"
+      cloud 'Kube mwdevel'
+      defaultContainer 'runner'
+      inheritFrom 'ci-template'
+    }
+  }
+
   options {
     timeout(time: 1, unit: 'HOURS')
     buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -22,12 +33,10 @@ pipeline {
     
     stage('build'){
       steps {
-        container('docker-runner') {
-          sh 'sh ./jenkins-build.sh'
-          sh 'ls -al'
-          archiveArtifacts 'repo/**'
-          archiveArtifacts 'ca_CMS-TTS-CA.repo'
-        }
+        sh 'sh ./jenkins-build.sh'
+        sh 'ls -al'
+        archiveArtifacts 'repo/**'
+        archiveArtifacts 'ca_CMS-TTS-CA.repo'
         script { currentBuild.result = 'SUCCESS' }
       }
     }
@@ -39,8 +48,8 @@ pipeline {
     }
     
     changed {
-      script{
-        if('SUCCESS'.equals(currentBuild.result)) {
+      script {
+        if ('SUCCESS'.equals(currentBuild.result)) {
           slackSend color: 'good', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal (<${env.BUILD_URL}|Open>)"
         }
       }
