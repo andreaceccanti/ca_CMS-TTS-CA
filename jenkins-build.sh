@@ -2,14 +2,12 @@
 set -ex
 
 BUILD_TAG=${BUILD_TAG:-test}
-REGISTRY_HOST=${REGISTRY_HOST:-cloud-vm114.cloud.cnaf.infn.it}
 PKG_IMAGE=${PKG_IMAGE:-italiangrid/pkg.base}
 PLATFORM=${PLATFORM:-centos6}
 
 IMAGE=${PKG_IMAGE}:${PLATFORM}
 
-docker pull ${REGISTRY_HOST}/${IMAGE}
-docker tag ${REGISTRY_HOST}/${IMAGE} ${IMAGE}
+docker pull ${IMAGE}
 
 docker run --name ${BUILD_TAG} -t \
     --env-file ./build-env \
